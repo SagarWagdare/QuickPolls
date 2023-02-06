@@ -37,9 +37,9 @@ const Home = () => {
             >
            
               <img
-                // src="https://images.pexels.com/photos/7176026/pexels-photo-7176026.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                src="https://images.pexels.com/photos/7176026/pexels-photo-7176026.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                 alt="Poll Image"
-                style={{ width: "600px", height: "00px" }}
+                style={{ width: "600px", height: "600px" }}
               />
             </div>
           </Col>
