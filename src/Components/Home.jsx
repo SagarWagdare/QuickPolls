@@ -72,7 +72,7 @@ const Home = () => {
         >
           <Row className="p-4 text-center text-light">
             <Col sm={4}>
-              <i class="fa-solid fa-child-reaching fa-5x fa-bounce "></i>
+              <i className="fa-solid fa-child-reaching fa-5x fa-bounce "></i>
               <h3 className="mt-4">YOUR OPINION MATTERS!</h3>
             </Col>
             <Col sm={4}>
@@ -80,15 +80,15 @@ const Home = () => {
               <h3 className="mt-4">OUR TEAM</h3>
             </Col>
             <Col sm={4}>
-              <i class="fa-solid fa-spinner fa-spin-pulse fa-5x"></i>
+              <i className="fa-solid fa-spinner fa-spin-pulse fa-5x"></i>
               <h3 className="mt-4">YOU CAN CREATE A POLL</h3>
             </Col>
           </Row>
         </div>
       </section>
 
-      <section className="bg-dark py-3">
-        <h1 className="text-bg-dark text-center ">Active Polls</h1>
+      <section className="b py-3">
+        <h1 className=" text-center  display-3">Active Polls</h1>
 
         {polls.map((poll, index) => (
           <Container key={index}>
@@ -99,7 +99,7 @@ const Home = () => {
                   style={{ width: "500px", height: "auto" ,}}
                 >
                   <h3>
-                    <i class="fa-regular fa-circle-question fa-1x"></i>
+                    <i className="fa-regular fa-circle-question fa-1x"></i>
                     {poll.Question}
                   </h3>
                 </Card>
@@ -111,7 +111,7 @@ const Home = () => {
           Add My Opinion
         </Button>
       <NavLink to="/signup">
-      <h6 className="text-center text-danger p-3 fa-beat-fade"><i class="fa-solid fa-cog fa-spin"></i>You Need to Signup First, Click me  <i class="fa-solid fa-arrow-right"></i></h6>
+      <h6 className="text-center text-warning p-3"><i className="fa-solid fa-cog fa-spin"></i>You Need to Signup First, Click me  <i className="fa-solid fa-arrow-right"></i></h6>
 
       </NavLink>
 
@@ -119,7 +119,7 @@ const Home = () => {
 
       
       {/* Footer  */}
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

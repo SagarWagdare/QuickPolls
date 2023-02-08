@@ -1,11 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { pollsquestions } from '../Poll/Pollquestions';
+
+
 const pollSlice = createSlice({
   name: "polls",
   initialState: {
     polls: pollsquestions,
     loading: false,
-    error: null
+    error: null,
+    value: '0',
   },
   reducers: {
     setPolls: (state, action) => {
@@ -21,16 +24,14 @@ const pollSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
-    addOption: (state, action) => {
-      state.options.push(action.payload);
+    updateInputValue: (state, action) => {
+      state.value = action.payload;
     },
-    // selectOption: (state, action) => {
-    //   state.selectedOption = action.payload;
-    // }
+  
   }
 });
 // extract the actions
-const { setPolls, setLoading, setError ,addOption} = pollSlice.actions;
+const { setPolls, setLoading, setError ,UpdateInputValue} = pollSlice.actions;
 export default pollSlice.reducer;
 
 

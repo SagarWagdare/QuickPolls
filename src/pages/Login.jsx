@@ -1,11 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "../Components/Header";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase";
+
 
 const Login = () => {
+  
+
+  const  navigate  = useNavigate();
+const [values, setValues] = useState({
+  email: "",
+  pass: "",
+});
+
+const [errorMsg, setErrorMsg] = useState(" ");
+
+const [submitButtonDisabled,setSubmitButtonDisabled] = useState(false);
+
+const handleSubmission = (e) => {
+  e.preventDefault();
+  if(!values.email||!values.pass){
+      setErrorMsg(" Fill all fields")
+      return;
+  }
+      setErrorMsg(" ")
+      setSubmitButtonDisabled(true)
+      signInWithEmailAndPassword(auth,values.email,values.pass).then(async(res)=>{
+          setSubmitButtonDisabled(false)
+          navigate("/pollhome")
+        
+      })
+      .catch((err)=>{
+
+          setSubmitButtonDisabled(false)
+         setErrorMsg(err.message)
+      })
+
+
+    }
+      
   return (
     <>
 <Header/>
@@ -19,7 +56,10 @@ const Login = () => {
         <Col sm={7}>  <Form className=" border-danger text-md-start">
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <h3>Email Address</h3>
-              <Form.Control type="email" placeholder="Enter email" />
+              <Form.Control type="email" placeholder="Enter email"
+                 onChange={(event) =>
+                  setValues((prev) => ({ ...prev, email: event.target.value }))
+                } />
               <Form.Text className="text-muted">
                 We'll never share your email with anyone else.
               </Form.Text>
@@ -29,12 +69,18 @@ const Login = () => {
             
             <Form.Group className="mb-3" controlId="formBasicPassword">
               <h3>Password</h3>
-              <Form.Control type="password" placeholder="Password" />
+              <Form.Control type="password" placeholder="Password" 
+                 onChange={(event) =>
+                  setValues((prev) => ({ ...prev, pass: event.target.value }))
+                }/>
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
               <Form.Check type="checkbox" label="Check me out" />
             </Form.Group>
-            <Button variant="warning" type="submit">
+            <p>
+        <b className="text-danger">{errorMsg}</b>
+      </p>
+            <Button variant="warning" type="submit" onClick={handleSubmission} disabled={submitButtonDisabled}>
               Submit
             </Button>
 
