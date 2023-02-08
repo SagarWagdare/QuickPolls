@@ -12,7 +12,7 @@ const Header = () => {
       <Navbar bg="dark" expand="lg" className="p-3">
         <Container fluid>
           <NavLink to="/" className="nav_heading text-uppercase">
-            <h2 className="text-light"><i className="fa-solid fa-square-poll-vertical"></i> <span className="text-warning">Quick</span> Polls</h2>
+            <h2 className="text-light"><i className="fa-solid fa-square-poll-vertical fa-flip"></i> <span className="text-warning">Quick</span> Polls</h2>
           </NavLink>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">

@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import React, { useState } from "react";
 import { Col, Container, Form, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
@@ -25,7 +25,7 @@ const [submitButtonDisabled,setSubmitButtonDisabled] = useState(false);
 
 const handleSubmission = (e) => {
   e.preventDefault();
-  if(!values.email||!values.pass){
+  if(!values.name||!values.email||!values.pass){
       setErrorMsg(" Fill all fields")
       return;
   }
@@ -34,11 +34,11 @@ const handleSubmission = (e) => {
       createUserWithEmailAndPassword(auth,values.email,values.pass).then(async(res)=>{
           setSubmitButtonDisabled(false)
           const user = res.user;
-          // await updateProfile(user,{
-          //     displayName:values.name, 
+          await updateProfile(user,{
+              displayName:values.name, 
               
-          // });
-          navigate("/")
+          });
+          navigate("/pollhome")
         
       })
       .catch((err)=>{
@@ -72,7 +72,7 @@ const handleSubmission = (e) => {
           type="text"
           placeholder="Enter name"
           onChange={(event) =>
-            setValues((prev) => ({ ...prev, name: event.target.value }))
+            setValues((prev) => ({ ...prev, name:event.target.value }))
           }
         />
         
